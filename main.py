@@ -31,7 +31,7 @@ Mesh.random2d_array()
 def start_game():
     Mesh.random2d_array()
     fps = 26
-    pygame.mixer_music.load("sounds/background_music.mp3")
+    pygame.mixer_music.load("sound/background_music.mp3")
     pygame.mixer_music.play(-1)
     pause = False
     run = True
@@ -83,14 +83,17 @@ def start_game():
 
 
 menu = pygame_menu.Menu('Game of Life', 400, 300,
-                        theme=pygame_menu.themes.THEME_SOLARIZED)
+                        theme=pygame_menu.themes.THEME_DARK)
 
+background = pygame_menu.BaseImage(image_path="img/background.jpg")
 # menu.add.selector('Difficulty :', [('Easy', 1), ('Hard', 2)], onchange=set_difficulty)
 menu.add.button('Play', start_game)
 menu.add.button('Quit', pygame_menu.events.EXIT)
 
-menu.mainloop(surface=screen)
+
+def main_background():
+    background.draw(surface=screen)
 
 
-
+menu.mainloop(screen, main_background)
 pygame.quit()
